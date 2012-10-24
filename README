@@ -1,0 +1,6 @@
+##.NET client library for SkyDrive REST API 
+
+Purpose of this project is to create a cross platform client for Microsoft SkyDrive.
+Structure of code and the base code itself is derived from https://github.com/dkarzon/DropNet
+
+### Currently it is in development phase, not recommended to use.
