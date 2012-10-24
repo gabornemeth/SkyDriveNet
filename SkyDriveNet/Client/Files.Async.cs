@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using RestSharp;
+using System.Diagnostics;
+using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using SkyDriveNet.Exceptions;
-using SkyDriveNet.Helpers;
 using SkyDriveNet.Models;
 
 namespace SkyDriveNet
@@ -13,22 +14,46 @@ namespace SkyDriveNet
         public void GetFolderAsync(string folder, Action<MetaData> success, Action<SkyDriveException> failure)
         {
             var request = _requestHelper.CreateFolderRequest(folder);
-            ExecuteAsync<MetaData>(ApiType.Base, request, data => GetFolderFilesAsync(data, success, failure), failure);
+            ExecuteAsync(ApiType.Base, request, response =>
+                                                    {
+                                                        MetaData metaData = DeserializeMetaData(response.Content);
+                                                        GetFolderFilesAsync(metaData, success, failure); // get contents
+                                                    }, failure);
         }
 
         private void GetFolderFilesAsync(MetaData folderData, Action<MetaData> success, Action<SkyDriveException> failure)
         {
             var request = _requestHelper.CreateFolderFilesRequest(folderData.Id);
-            //ExecuteAsync(ApiType.Base, request, response =>
-            //                                        {
-            //                                            var x = response;
-            //                                        }, failure);
-            ExecuteAsync<MetaDataCollection>(ApiType.Base, request, contents =>
-            {
-                if (contents != null)
-                    folderData.Files = contents.data;
-                success(folderData);
-            }, failure);
+            ExecuteAsync(ApiType.Base, request, response =>
+                                                    {
+                                                        var json = JObject.Parse(response.Content);
+                                                        var contents = json["data"].Select(item => DeserializeMetaData(item.ToString())).Where(metaData => metaData != null).ToList();
+                                                        if (contents.Count > 0)
+                                                            folderData.Files = contents;
+                                                        success(folderData);
+                                                    }, failure);
+        }
+
+        private MetaData DeserializeMetaData(string jsonString)
+        {
+            var json = JObject.Parse(jsonString);
+            if (json == null)
+                return null;
+
+            var type = json["type"].ToString();
+            if (type == "folder")
+                return JsonConvert.DeserializeObject<Folder>(jsonString);
+            if (type == "album")
+                return JsonConvert.DeserializeObject<Album>(jsonString);
+            if (type == "file")
+                return JsonConvert.DeserializeObject<File>(jsonString);
+            if (type == "audio")
+                return JsonConvert.DeserializeObject<Audio>(jsonString);
+            if (type == "video")
+                return JsonConvert.DeserializeObject<Video>(jsonString);
+            if (type == "photo")
+                return JsonConvert.DeserializeObject<Photo>(jsonString);
+            return null; // could not find proper type
         }
 
         /*

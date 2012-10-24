@@ -43,8 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Lib\wp71\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.WindowsPhone">
+      <HintPath>..\..\Lib\wp71\RestSharp.WindowsPhone.dll</HintPath>
+    </Reference>
     <Reference Include="System.Threading.Tasks.WP71">
-      <HintPath>..\packages\System.Threading.Tasks.3.0.1\lib\sl4-wp71\System.Threading.Tasks.WP71.dll</HintPath>
+      <HintPath>..\..\Lib\wp71\System.Threading.Tasks.WP71.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -81,8 +87,23 @@
     <Compile Include="..\..\SkyDriveNet\Helpers\SkyDriveHelper.cs">
       <Link>Helpers\SkyDriveHelper.cs</Link>
     </Compile>
+    <Compile Include="..\..\SkyDriveNet\Models\Album.cs">
+      <Link>Models\Album.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SkyDriveNet\Models\Audio.cs">
+      <Link>Models\Audio.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SkyDriveNet\Models\File.cs">
+      <Link>Models\File.cs</Link>
+    </Compile>
     <Compile Include="..\..\SkyDriveNet\Models\Folder.cs">
       <Link>Models\Folder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SkyDriveNet\Models\MetaData.cs">
+      <Link>Models\MetaData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SkyDriveNet\Models\Photo.cs">
+      <Link>Models\Photo.cs</Link>
     </Compile>
     <Compile Include="..\..\SkyDriveNet\Models\User.cs">
       <Link>Models\User.cs</Link>
@@ -90,21 +111,14 @@
     <Compile Include="..\..\SkyDriveNet\Models\UserLogin.cs">
       <Link>Models\UserLogin.cs</Link>
     </Compile>
+    <Compile Include="..\..\SkyDriveNet\Models\Video.cs">
+      <Link>Models\Video.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\RestSharp\RestSharp.WindowsPhone.Mango\RestSharp.WindowsPhone.Mango.csproj">
-      <Project>{71647E33-714F-4975-8368-71B075045272}</Project>
-      <Name>RestSharp.WindowsPhone.Mango</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

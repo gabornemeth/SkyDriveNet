@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyDriveNet.WindowsPhone.Mango", "SkyDriveNet.WindowsPhone.Mango\SkyDriveNet.WindowsPhone.Mango.csproj", "{074B7DEC-8BCC-491D-A05D-4B2187DB8591}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{FBEE1F1B-E662-4C9A-BF85-AA9D0D97EA85}"
+	ProjectSection(SolutionItems) = preProject
+		..\Lib\wp71\Newtonsoft.Json.dll = ..\Lib\wp71\Newtonsoft.Json.dll
+		..\Lib\wp71\RestSharp.WindowsPhone.dll = ..\Lib\wp71\RestSharp.WindowsPhone.dll
+		..\Lib\wp71\System.Threading.Tasks.WP71.dll = ..\Lib\wp71\System.Threading.Tasks.WP71.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

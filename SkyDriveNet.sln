@@ -3,11 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyDriveNet", "SkyDriveNet\SkyDriveNet.csproj", "{82D6EB6E-C222-4C3D-811F-4E6486E5743F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{773120D2-6088-47B2-A3F5-DFDEF004209F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{73502A96-B0FF-4E73-8CDE-9DCF1AB3975B}"
 	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
+		Lib\net40\Newtonsoft.Json.dll = Lib\net40\Newtonsoft.Json.dll
+		Lib\net40\RestSharp.dll = Lib\net40\RestSharp.dll
 	EndProjectSection
 EndProject
 Global
